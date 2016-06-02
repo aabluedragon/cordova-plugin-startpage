@@ -134,6 +134,20 @@ public class StartPagePlugin extends CordovaPlugin {
         }
     }
 
+    // Copied from Cordova's ConfigXmlParser.java setStartUrl.
+    protected String finalizeUrl(String src) {
+        Pattern schemeRegex = Pattern.compile("^[a-z-]+://");
+        Matcher matcher = schemeRegex.matcher(src);
+        if (matcher.find()) {
+            return src;
+        } else {
+            if (src.charAt(0) == '/') {
+                src = src.substring(1);
+            }
+            return "file:///android_asset/www/" + src;
+        }
+    }
+
     @Override
 	public boolean execute(final String action, final JSONArray data, final CallbackContext callbackContext) throws JSONException {
 
@@ -142,7 +156,9 @@ public class StartPagePlugin extends CordovaPlugin {
 
             if(startPageUrl != null) {
                 SharedPreferences defaults = PreferenceManager.getDefaultSharedPreferences(appContext);
-                defaults.edit().putString(kStartPage, startPageUrl).apply();
+                defaults.edit().putString(kStartPage,
+                        finalizeUrl(startPageUrl)
+                ).apply();
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
             } else {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "bad_url"));
