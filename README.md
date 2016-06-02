@@ -7,7 +7,7 @@ Which is static until you provide an application update.
 ## Usage
 First, reference the plugin with:
 ```js
-var startpage = cordova.require('org.alonamir.startpage.StartPagePlugin');
+var startpage = cordova.require('cordova-plugin-startpage.StartPagePlugin');
 ```
 
 ### To set the start page for future app boot, run
