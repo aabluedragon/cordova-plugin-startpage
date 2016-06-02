@@ -2,7 +2,7 @@
 A plugin to modify the Cordova start page in run time.
 
 This plugin let's you change the start page to different URLs, not restricted by the widget.content.src entry in config.xml
-Which is static until you provide an application update.
+which normally is static until you provide an application update.
 
 ## Usage
 First, reference the plugin with:
