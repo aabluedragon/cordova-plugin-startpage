@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-startpage" version="1.0.0">
+    <name>StartPagePlugin</name>
+    <description>StartPagePlugin</description>
+    <license></license>
+    <keywords>cordova,startpage,start,page</keywords>
+    <js-module src="www/startpage.js" name="StartPagePlugin">
+        <clobbers target="startpage" />
+    </js-module>
+
+    <platform name="android">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="StartPagePlugin">
+                <param name="android-package" value="org.cordova.plugin.StartPagePlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="android/src/org/cordova/plugin/startpage/StartPagePlugin.java" target-dir="src/org/cordova/plugin/startpage" />
+
+    </platform>
+
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="StartPagePlugin">
+                <param name="ios-package" value="StartPagePlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+
+        <source-file src="ios/StartPagePlugin.m" />
+        <header-file src="ios/StartPagePlugin.h" />
+
+        <source-file src="ios/XMLParser.m" />
+        <header-file src="ios/XMLParser.h" />
+
+    </platform>
+</plugin>
