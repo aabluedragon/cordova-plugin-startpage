@@ -13,7 +13,7 @@
 
         <config-file target="config.xml" parent="/*">
             <feature name="StartPagePlugin">
-                <param name="android-package" value="org.cordova.plugin.StartPagePlugin"/>
+                <param name="android-package" value="org.cordova.plugin.startpage.StartPagePlugin" />
                 <param name="onload" value="true" />
             </feature>
         </config-file>
