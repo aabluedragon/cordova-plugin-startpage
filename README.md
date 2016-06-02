@@ -29,3 +29,6 @@ startpage.loadStartPage();
 ```js
 startpage.resetStartPageToContentSrc(function success(){}, function error(){});
 ```
+
+### Append application version and build version as query params
+If you define `<preference name="IncludeVersionInStartPageUrl" value="true" />` in your config.xml, the plugin will communicate to cordova to load the page requests with additional URL query params: `nativeVersion` and `buildVersion`. 
