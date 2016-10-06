@@ -1,9 +1,12 @@
 package org.cordova.plugin.startpage;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -43,7 +46,6 @@ public class StartPagePlugin extends CordovaPlugin {
 
     protected void forceLoadUrl(final String url) {
         webView.stopLoading();
-
         final Handler mainHandler = new Handler(cordova.getActivity().getMainLooper());
         final Looper myLooper = Looper.myLooper();
         mainHandler.post(new Runnable() {
@@ -111,6 +113,30 @@ public class StartPagePlugin extends CordovaPlugin {
     public void initialize(final CordovaInterface cordova, final CordovaWebView webView) {
         super.initialize(cordova, webView);
 
+        // Force close the app if cordova activity is finished (Back button clicked all the way through)
+        cordova.getActivity().getApplication().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {}
+            @Override
+            public void onActivityStarted(Activity activity) {}
+            @Override
+            public void onActivityResumed(Activity activity) {}
+            @Override
+            public void onActivityPaused(Activity activity) {}
+            @Override
+            public void onActivityStopped(Activity activity) {}
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {}
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+                cordova.getActivity().getApplication().unregisterActivityLifecycleCallbacks(this);
+                if(activity == cordova.getActivity()) {
+                    cordova.getActivity().finishAffinity();
+                    System.exit(0);
+                }
+            }
+        });
         // Only on first load of the plugin
         if(!bootstrappedAlready) {
             bootstrappedAlready = true;
