@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-startpage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cordova Device StartPage",
   "cordova": {
     "id": "cordova-plugin-startpage",
