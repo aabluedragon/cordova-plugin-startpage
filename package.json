@@ -1,0 +1,24 @@
+{
+  "name": "cordova-plugin-startpage",
+  "version": "1.0.2",
+  "description": "Cordova Device StartPage",
+  "cordova": {
+    "id": "cordova-plugin-startpage",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aabluedragon/cordova-plugin-startpage"
+  },
+  "keywords": [
+    "cordova",
+    "start",
+    "page",
+    "startpage"
+  ],
+  "author": "Alon Amir",
+  "license": "DBAD"
+}
